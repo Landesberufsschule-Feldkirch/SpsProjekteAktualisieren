@@ -1,0 +1,19 @@
+﻿{
+  "AlleProjektVerzeichnisse": [
+    {
+      "Kommentar": "Ordner",
+      "Quelle": "k:/git/Snap7/Sharp7",
+      "Ziel": "k:/git/Projekte_TIA_Portal_V14"
+    },
+    {
+      "Kommentar": "AmpelsteuerungKieswerk",
+      "Quelle": "AmpelsteuerungKieswerk/bin/Debug",
+      "Ziel": "V14SP1_PLC_Snap7_FUP_AmpelsteuerungKieswerk/AmpelsteuerungKieswerk"
+    },
+    {
+      "Kommentar": "BehaelterSteuerung",
+      "Quelle": "BehaelterSteuerung/bin/Debug",
+      "Ziel": "V14SP1_PLC_Snap7_FUP_BehaelterSteuerung/BehaelterSteuerung"
+    }
+  ]
+}
