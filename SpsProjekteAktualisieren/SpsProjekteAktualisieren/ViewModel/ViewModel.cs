@@ -15,7 +15,7 @@
             ViAnzeige = new VisuAnzeigen(projekteAktualsieren);
         }
 
-        public Model.ProjekteAktualsieren ProjekteAktualsieren{ get { return projekteAktualsieren; } }
+        public Model.ProjekteAktualsieren ProjekteAktualsieren { get { return projekteAktualsieren; } }
 
         #region BtnAktualisieren
         private ICommand _btnAktualisieren;

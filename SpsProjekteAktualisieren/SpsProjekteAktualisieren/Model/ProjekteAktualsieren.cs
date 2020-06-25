@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace SpsProjekteAktualisieren.Model
 {
@@ -12,6 +13,7 @@ namespace SpsProjekteAktualisieren.Model
 
 
         private readonly StringBuilder textBoxText;
+        private System.Collections.Generic.IEnumerable<string> fileNames;
 
         public ProjekteAktualsieren()
         {
@@ -50,9 +52,17 @@ namespace SpsProjekteAktualisieren.Model
         {
             var laengeQuelle = quelle.Length;
 
-            var fileNames = Directory.EnumerateFiles(quelle, "*.*", SearchOption.AllDirectories)
-                            .Where(s => s.EndsWith(".exe") || s.EndsWith(".dll") || s.EndsWith(".json")
-                            );
+
+            try
+            {
+                fileNames = Directory.EnumerateFiles(quelle, "*.*", SearchOption.AllDirectories)
+                           .Where(s => s.EndsWith(".exe") || s.EndsWith(".dll") || s.EndsWith(".json")
+                           );
+            }
+            catch (FileNotFoundException e)
+            {
+                MessageBox.Show("Failed to open file - " + e.ToString());
+            }
 
             textBoxText.Append(quelle + "\n");
 
@@ -60,7 +70,15 @@ namespace SpsProjekteAktualisieren.Model
             foreach (var quellName in fileNames)
             {
                 var zielName = ziel + "/" + quellName.Substring(laengeQuelle + 1);
-                File.Copy(quellName, zielName, true);
+                try
+                {
+                    File.Copy(quellName, zielName, true);
+                }
+                catch (FileNotFoundException e)
+                {
+                    MessageBox.Show("Failed to open file - " + e.ToString());
+                }
+
                 textBoxText.Append(zielName + "\n");
             }
 

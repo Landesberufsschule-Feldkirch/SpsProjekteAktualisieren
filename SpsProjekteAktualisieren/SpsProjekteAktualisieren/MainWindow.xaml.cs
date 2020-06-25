@@ -11,6 +11,6 @@ namespace SpsProjekteAktualisieren
             viewModel = new ViewModel.ViewModel();
             InitializeComponent();
             DataContext = viewModel;
-        }      
+        }
     }
 }

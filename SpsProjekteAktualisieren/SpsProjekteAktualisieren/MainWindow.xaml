@@ -24,6 +24,6 @@
         </Grid.RowDefinitions>
 
         <Button Content="Aktualisieren" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Command="{Binding BtnAktualisieren}" />
-        <TextBox  Grid.Column="1" Grid.ColumnSpan="7"  Grid.Row="3" TextWrapping="Wrap" FontSize="12pt" Text="{Binding ViAnzeige.TextBoxText}" Grid.RowSpan="6" />
+        <TextBox  Grid.Column="1" Grid.ColumnSpan="7"  Grid.Row="3" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="12pt" Text="{Binding ViAnzeige.TextBoxText}" Grid.RowSpan="6" />
     </Grid>
 </Window>
