@@ -1,14 +1,11 @@
-﻿using System.Windows;
-
-namespace SpsProjekteAktualisieren
+﻿namespace SpsProjekteAktualisieren
 {
-    public partial class MainWindow : Window
+    // ReSharper disable once UnusedMember.Global
+    public partial class MainWindow
     {
-        private readonly ViewModel.ViewModel viewModel;
-
         public MainWindow()
         {
-            viewModel = new ViewModel.ViewModel();
+            var viewModel = new ViewModel.ViewModel();
             InitializeComponent();
             DataContext = viewModel;
         }

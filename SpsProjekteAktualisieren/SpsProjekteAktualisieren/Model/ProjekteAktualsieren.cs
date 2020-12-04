@@ -12,12 +12,12 @@ namespace SpsProjekteAktualisieren.Model
         public string ZielOrdner { get; set; }
 
 
-        private readonly StringBuilder textBoxText;
-        private System.Collections.Generic.IEnumerable<string> fileNames;
+        private readonly StringBuilder _textBoxText;
+        private System.Collections.Generic.IEnumerable<string> _fileNames;
 
         public ProjekteAktualsieren()
         {
-            textBoxText = new StringBuilder();
+            _textBoxText = new StringBuilder();
             OrdnerStruktur = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjektVerzeichnisse>(File.ReadAllText("ProjektVerzeichnisse.json"));
             if (OrdnerStruktur.AlleProjektVerzeichnisse[0].Kommentar == "Ordner")
             {
@@ -25,20 +25,18 @@ namespace SpsProjekteAktualisieren.Model
                 ZielOrdner = OrdnerStruktur.AlleProjektVerzeichnisse[0].Ziel;
             }
 
-            textBoxText.Clear();
+            _textBoxText.Clear();
             foreach (var struktur in OrdnerStruktur.AlleProjektVerzeichnisse)
             {
-                if (struktur.Kommentar != "Ordner")
-                {
-                    textBoxText.Append(QuellOrdner + "/" + struktur.Quelle + "\n");
-                    textBoxText.Append(ZielOrdner + "/" + struktur.Ziel + "\n\n");
-                }
+                if (struktur.Kommentar == "Ordner") continue;
+                _textBoxText.Append(QuellOrdner + "/" + struktur.Quelle + "\n");
+                _textBoxText.Append(ZielOrdner + "/" + struktur.Ziel + "\n\n");
             }
         }
 
         internal void AlleAktualisieren()
         {
-            textBoxText.Clear();
+            _textBoxText.Clear();
             foreach (var struktur in OrdnerStruktur.AlleProjektVerzeichnisse)
             {
                 if (struktur.Kommentar != "Ordner")
@@ -52,22 +50,20 @@ namespace SpsProjekteAktualisieren.Model
         {
             var laengeQuelle = quelle.Length;
 
-
             try
             {
-                fileNames = Directory.EnumerateFiles(quelle, "*.*", SearchOption.AllDirectories)
+                _fileNames = Directory.EnumerateFiles(quelle, "*.*", SearchOption.AllDirectories)
                            .Where(s => s.EndsWith(".exe") || s.EndsWith(".dll") || s.EndsWith(".json")
                            );
             }
             catch (FileNotFoundException e)
             {
-                MessageBox.Show("Failed to open file - " + e.ToString());
+                MessageBox.Show("Failed to open file - " + e);
             }
 
-            textBoxText.Append(quelle + "\n");
+            _textBoxText.Append(quelle + "\n");
 
-
-            foreach (var quellName in fileNames)
+            foreach (var quellName in _fileNames)
             {
                 var zielName = ziel + "/" + quellName.Substring(laengeQuelle + 1);
                 try
@@ -76,15 +72,15 @@ namespace SpsProjekteAktualisieren.Model
                 }
                 catch (FileNotFoundException e)
                 {
-                    MessageBox.Show("Failed to open file - " + e.ToString());
+                    MessageBox.Show("Failed to open file - " + e);
                 }
 
-                textBoxText.Append(zielName + "\n");
+                _textBoxText.Append(zielName + "\n");
             }
 
-            textBoxText.Append("\n");
+            _textBoxText.Append("\n");
         }
 
-        internal StringBuilder TextBoxText() => textBoxText;
+        internal StringBuilder TextBoxText() => _textBoxText;
     }
 }

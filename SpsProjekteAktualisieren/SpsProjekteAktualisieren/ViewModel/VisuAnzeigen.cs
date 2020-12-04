@@ -5,31 +5,32 @@
 
     public class VisuAnzeigen : INotifyPropertyChanged
     {
-        private readonly Model.ProjekteAktualsieren projekteAktualsieren;
+        private readonly Model.ProjekteAktualsieren _projekteAktualsieren;
 
         public VisuAnzeigen(Model.ProjekteAktualsieren pA)
         {
-            projekteAktualsieren = pA;
+            _projekteAktualsieren = pA;
             TextBoxText = "";
 
-            System.Threading.Tasks.Task.Run(() => VisuAnzeigenTask());
+            System.Threading.Tasks.Task.Run(VisuAnzeigenTask);
         }
 
         private void VisuAnzeigenTask()
         {
             while (true)
             {
-                TextBoxText = projekteAktualsieren.TextBoxText();
+                TextBoxText = _projekteAktualsieren.TextBoxText();
 
                 Thread.Sleep(10);
             }
+            // ReSharper disable once FunctionNeverReturns
         }
 
         #region TextBoxText
         private object _textBoxText;
         public object TextBoxText
         {
-            get { return _textBoxText; }
+            get => _textBoxText;
             set
             {
                 _textBoxText = value;
