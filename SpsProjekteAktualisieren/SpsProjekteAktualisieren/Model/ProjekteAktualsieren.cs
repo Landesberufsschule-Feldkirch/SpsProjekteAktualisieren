@@ -1,7 +1,5 @@
 ﻿using System.IO;
-using System.Linq;
 using System.Text;
-using System.Windows;
 
 namespace SpsProjekteAktualisieren.Model
 {
@@ -11,9 +9,7 @@ namespace SpsProjekteAktualisieren.Model
         public string QuellOrdner { get; set; }
         public string ZielOrdner { get; set; }
 
-
         private readonly StringBuilder _textBoxText;
-        private System.Collections.Generic.IEnumerable<string> _fileNames;
 
         public ProjekteAktualsieren()
         {
@@ -41,44 +37,45 @@ namespace SpsProjekteAktualisieren.Model
             {
                 if (struktur.Kommentar != "Ordner")
                 {
-                    DateienAktualisieren(QuellOrdner + "/" + struktur.Quelle, ZielOrdner + "/" + struktur.Ziel);
+                    DirectoryCopy(QuellOrdner + "/" + struktur.Quelle, ZielOrdner + "/" + struktur.Ziel);
                 }
             }
         }
 
-        internal void DateienAktualisieren(string quelle, string ziel)
+        private static void DirectoryCopy(string sourceDirName, string destDirName)
         {
-            var laengeQuelle = quelle.Length;
+            // Get the subdirectories for the specified directory.
+            var dir = new DirectoryInfo(sourceDirName);
 
-            try
+            if (!dir.Exists)
             {
-                _fileNames = Directory.EnumerateFiles(quelle, "*.*", SearchOption.AllDirectories)
-                           .Where(s => s.EndsWith(".exe") || s.EndsWith(".dll") || s.EndsWith(".json")
-                           );
-            }
-            catch (FileNotFoundException e)
-            {
-                MessageBox.Show("Failed to open file - " + e);
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
             }
 
-            _textBoxText.Append(quelle + "\n");
-
-            foreach (var quellName in _fileNames)
+            var dirs = dir.GetDirectories();
+            // If the destination directory doesn't exist, create it.
+            if (!Directory.Exists(destDirName))
             {
-                var zielName = ziel + "/" + quellName.Substring(laengeQuelle + 1);
-                try
-                {
-                    File.Copy(quellName, zielName, true);
-                }
-                catch (FileNotFoundException e)
-                {
-                    MessageBox.Show("Failed to open file - " + e);
-                }
-
-                _textBoxText.Append(zielName + "\n");
+                Directory.CreateDirectory(destDirName);
             }
 
-            _textBoxText.Append("\n");
+            // Get the files in the directory and copy them to the new location.
+            var files = dir.GetFiles();
+            foreach (var file in files)
+            {
+                var temppath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, true);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+
+            foreach (var subdir in dirs)
+            {
+                var temppath = Path.Combine(destDirName, subdir.Name);
+                DirectoryCopy(subdir.FullName, temppath);
+            }
         }
 
         internal StringBuilder TextBoxText() => _textBoxText;

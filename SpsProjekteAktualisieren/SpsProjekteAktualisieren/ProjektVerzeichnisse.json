@@ -2,78 +2,88 @@
   "AlleProjektVerzeichnisse": [
     {
       "Kommentar": "Ordner",
-      "Quelle": "k:/git/Snap7/Sharp7",
-      "Ziel": "k:/git/Projekte_TIA_Portal_V14"
+      "Quelle": "h:/git/Snap7-Motorschaltungen_1_Getriebemotor/Sharp7",
+      "Ziel": "s:/Linder Kurt/_TiaPortal14"
     },
     {
       "Kommentar": "AmpelsteuerungKieswerk",
-      "Quelle": "AmpelsteuerungKieswerk/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_AmpelsteuerungKieswerk/AmpelsteuerungKieswerk"
+      "Quelle": "AmpelsteuerungKieswerk/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_AmpelsteuerungKieswerk/AmpelsteuerungKieswerk/net5.0-windows"
     },
     {
       "Kommentar": "BehaelterSteuerung",
-      "Quelle": "BehaelterSteuerung/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_BehaelterSteuerung/BehaelterSteuerung"
-    },
+      "Quelle": "BehaelterSteuerung/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_BehaelterSteuerung/BehaelterSteuerung/net5.0-windows"
+    },	
+    {
+      "Kommentar": "Blinker",
+      "Quelle": "Blinker/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_Blinker/Blinker/net5.0-windows"
+    },	
     {
       "Kommentar": "LAP_2010_1_Kompressoranlage",
-      "Quelle": "LAP_2010_1_Kompressoranlage/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_LAP__2010__1__Kompressoranlage/LAP_2010_1_Kompressoranlage"
+      "Quelle": "LAP_2010_1_Kompressoranlage/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_LAP__2010__1__Kompressoranlage/LAP_2010_1_Kompressoranlage/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2010_2_Transportwagen",
-      "Quelle": "LAP_2010_2_Transportwagen/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_LAP__2010__2__Transportwagen/LAP_2010_2_Transportwagen"
+      "Quelle": "LAP_2010_2_Transportwagen/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_LAP__2010__2__Transportwagen/LAP_2010_2_Transportwagen/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2010_3_Ofentuersteuerung",
-      "Quelle": "LAP_2010_3_Ofentuersteuerung/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_LAP__2010__3__Ofentuersteuerung/LAP_2010_3_Ofentuersteuerung"
+      "Quelle": "LAP_2010_3_Ofentuersteuerung/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_LAP__2010__3__Ofentuersteuerung/LAP_2010_3_Ofentuersteuerung/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2010_4_Abfuellanlage",
-      "Quelle": "LAP_2010_4_Abfuellanlage/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_LAP__2010__4__Abfuellanlage/LAP_2010_4_Abfuellanlage"
+      "Quelle": "LAP_2010_4_Abfuellanlage/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_LAP__2010__4__Abfuellanlage/LAP_2010_4_Abfuellanlage/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2010_5_Pumpensteuerung",
-      "Quelle": "LAP_2010_5_Pumpensteuerung/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_LAP__2010__5__Pumpensteuerung/LAP_2010_5_Pumpensteuerung"
+      "Quelle": "LAP_2010_5_Pumpensteuerung/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_LAP__2010__5__Pumpensteuerung/LAP_2010_5_Pumpensteuerung/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2018_2_Abfuellanlage",
-      "Quelle": "LAP_2018_2_Abfuellanlage/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_LAP__2018__2__Abfuellanlage/LAP_2018_Abfuellanlage"
+      "Quelle": "LAP_2018_2_Abfuellanlage/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_LAP__2018__2__Abfuellanlage/LAP_2018_Abfuellanlage/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2018_4_Niveauregelung",
-      "Quelle": "LAP_2018_4_Niveauregelung/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_LAP__2018__4__Niveauregelung/LAP_2018_Niveauregelung"
+      "Quelle": "LAP_2018_4_Niveauregelung/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_LAP__2018__4__Niveauregelung/LAP_2018_Niveauregelung/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2019_Foerderanlage",
-      "Quelle": "LAP_2019_Foerderanlage/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_LAP__2019__Foerderanlage/LAP_2019_Foerderanlage"
+      "Quelle": "LAP_2019_Foerderanlage/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_LAP__2019__Foerderanlage/LAP_2019_Foerderanlage/net5.0-windows"
     },
     {
       "Kommentar": "Nadeltelegraph",
-      "Quelle": "Nadeltelegraph/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_Nadeltelegraph/Nadeltelegraph"
+      "Quelle": "Nadeltelegraph/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_Nadeltelegraph/Nadeltelegraph/net5.0-windows"
     },
     {
       "Kommentar": "Synchronisiereinrichtung",
-      "Quelle": "Synchronisiereinrichtung/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_Synchronisiereinrichtung/Synchronisiereinrichtung"
+      "Quelle": "Synchronisiereinrichtung/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_Synchronisiereinrichtung/Synchronisiereinrichtung/net5.0-windows"
     },
     {
       "Kommentar": "Tiefgarage",
-      "Quelle": "Tiefgarage/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_Tiefgarage/Tiefgarage"
+      "Quelle": "Tiefgarage/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_Tiefgarage/Tiefgarage/net5.0-windows"
     },
     {
       "Kommentar": "WordClock",
-      "Quelle": "WordClock/bin/Debug",
-      "Ziel": "V14SP1_PLC_Snap7_FUP_Wordclock/WordClock"
+      "Quelle": "WordClock/bin/Debug/net5.0-windows",
+      "Ziel": "Snap7_FUP_Wordclock/WordClock/net5.0-windows"
+    },	
+    {
+      "Kommentar": "Labor Getriebemotor",
+      "Quelle": "LaborGetriebemotor/bin/Debug/net5.0-windows",
+      "Ziel": "TEST_SCL_Labor_Getriebemotor/Getriebemotor/net5.0-windows"
     }
   ]
 }
