@@ -2,7 +2,7 @@
   "AlleProjektVerzeichnisse": [
     {
       "Kommentar": "Ordner",
-      "Quelle": "h:/git/Snap7-Motorschaltungen_1_Getriebemotor/Sharp7",
+      "Quelle": "h:/git/Snap7-Motorschaltungen_1_LinearAchse/Sharp7",
       "Ziel": "s:/Linder Kurt/_TiaPortal14"
     },
     {
@@ -23,42 +23,52 @@
     {
       "Kommentar": "LAP_2010_1_Kompressoranlage",
       "Quelle": "LAP_2010_1_Kompressoranlage/bin/Debug/net5.0-windows",
-      "Ziel": "Snap7_FUP_LAP__2010__1__Kompressoranlage/LAP_2010_1_Kompressoranlage/net5.0-windows"
+      "Ziel": "TEST_FUP_LAP__2010__1__Kompressoranlage/LAP_2010_1_Kompressoranlage/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2010_2_Transportwagen",
       "Quelle": "LAP_2010_2_Transportwagen/bin/Debug/net5.0-windows",
-      "Ziel": "Snap7_FUP_LAP__2010__2__Transportwagen/LAP_2010_2_Transportwagen/net5.0-windows"
+      "Ziel": "TEST_FUP_LAP__2010__2__Transportwagen/LAP_2010_2_Transportwagen/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2010_3_Ofentuersteuerung",
       "Quelle": "LAP_2010_3_Ofentuersteuerung/bin/Debug/net5.0-windows",
-      "Ziel": "Snap7_FUP_LAP__2010__3__Ofentuersteuerung/LAP_2010_3_Ofentuersteuerung/net5.0-windows"
+      "Ziel": "TEST_FUP_LAP__2010__3__Ofentuersteuerung/LAP_2010_3_Ofentuersteuerung/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2010_4_Abfuellanlage",
       "Quelle": "LAP_2010_4_Abfuellanlage/bin/Debug/net5.0-windows",
-      "Ziel": "Snap7_FUP_LAP__2010__4__Abfuellanlage/LAP_2010_4_Abfuellanlage/net5.0-windows"
+      "Ziel": "TEST_FUP_LAP__2010__4__Abfuellanlage/LAP_2010_4_Abfuellanlage/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2010_5_Pumpensteuerung",
       "Quelle": "LAP_2010_5_Pumpensteuerung/bin/Debug/net5.0-windows",
-      "Ziel": "Snap7_FUP_LAP__2010__5__Pumpensteuerung/LAP_2010_5_Pumpensteuerung/net5.0-windows"
+      "Ziel": "TEST_FUP_LAP__2010__5__Pumpensteuerung/LAP_2010_5_Pumpensteuerung/net5.0-windows"
+    },
+    {
+      "Kommentar": "LAP_2018_1_Silosteuerung",
+      "Quelle": "LAP_2018_1_Silosteuerung/bin/Debug/net5.0-windows",
+      "Ziel": "TEST_FUP_LAP__2018__1__Silosteuerung/LAP_2018_1_Silosteuerung/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2018_2_Abfuellanlage",
       "Quelle": "LAP_2018_2_Abfuellanlage/bin/Debug/net5.0-windows",
-      "Ziel": "Snap7_FUP_LAP__2018__2__Abfuellanlage/LAP_2018_Abfuellanlage/net5.0-windows"
+      "Ziel": "TEST_FUP_LAP__2018__2__Abfuellanlage/LAP_2018_2_Abfuellanlage/net5.0-windows"
     },
+    {
+      "Kommentar": "LAP_2018_3_Hydraulikaggregat",
+      "Quelle": "LAP_2018_3_Hydraulikaggregat/bin/Debug/net5.0-windows",
+      "Ziel": "TEST_FUP_LAP__2018__3__Hydraulikaggregat/LAP_2018_3_Hydraulikaggregat/net5.0-windows"
+    },   
     {
       "Kommentar": "LAP_2018_4_Niveauregelung",
       "Quelle": "LAP_2018_4_Niveauregelung/bin/Debug/net5.0-windows",
-      "Ziel": "Snap7_FUP_LAP__2018__4__Niveauregelung/LAP_2018_Niveauregelung/net5.0-windows"
+      "Ziel": "TEST_FUP_LAP__2018__4__Niveauregelung/LAP_2018_4_Niveauregelung/net5.0-windows"
     },
     {
       "Kommentar": "LAP_2019_Foerderanlage",
       "Quelle": "LAP_2019_Foerderanlage/bin/Debug/net5.0-windows",
-      "Ziel": "Snap7_FUP_LAP__2019__Foerderanlage/LAP_2019_Foerderanlage/net5.0-windows"
+      "Ziel": "TEST_FUP_LAP__2019__Foerderanlage/LAP_2019_Foerderanlage/net5.0-windows"
     },
     {
       "Kommentar": "Nadeltelegraph",
@@ -84,6 +94,11 @@
       "Kommentar": "Labor Getriebemotor",
       "Quelle": "LaborGetriebemotor/bin/Debug/net5.0-windows",
       "Ziel": "TEST_SCL_Labor_Getriebemotor/Getriebemotor/net5.0-windows"
+    }    ,	
+    {
+      "Kommentar": "Labor Linearachse",
+      "Quelle": "LaborLinearachse/bin/Debug/net5.0-windows",
+      "Ziel": "TEST_SCL_Labor_Linearachse/Linearachse/net5.0-windows"
     }
   ]
 }

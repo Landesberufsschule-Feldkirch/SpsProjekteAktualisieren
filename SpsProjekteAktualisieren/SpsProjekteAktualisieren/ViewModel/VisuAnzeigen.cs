@@ -34,10 +34,11 @@
             set
             {
                 _textBoxText = value;
-                OnPropertyChanged(nameof(TextBoxText));
+                OnPropertyChanged("TextBoxText");
             }
         }
         #endregion
+
 
         #region iNotifyPeropertyChanged Members
 

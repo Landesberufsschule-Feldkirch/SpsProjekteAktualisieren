@@ -1,5 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace SpsProjekteAktualisieren.Model
 {
@@ -9,7 +12,9 @@ namespace SpsProjekteAktualisieren.Model
         public string QuellOrdner { get; set; }
         public string ZielOrdner { get; set; }
 
+
         private readonly StringBuilder _textBoxText;
+        private System.Collections.Generic.IEnumerable<string> _fileNames;
 
         public ProjekteAktualsieren()
         {
@@ -37,15 +42,29 @@ namespace SpsProjekteAktualisieren.Model
             {
                 if (struktur.Kommentar != "Ordner")
                 {
-                    DirectoryCopy(QuellOrdner + "/" + struktur.Quelle, ZielOrdner + "/" + struktur.Ziel);
+                    OrdnerLoeschen(ZielOrdner + "/" + struktur.Ziel);
+                    DateienAktualisieren(QuellOrdner + "/" + struktur.Quelle, ZielOrdner + "/" + struktur.Ziel);
                 }
             }
         }
 
-        private static void DirectoryCopy(string sourceDirName, string destDirName)
+        private void OrdnerLoeschen(string ordner)
+        {
+            _textBoxText.Append("Ordner löschen: " + ordner + "\n");
+            if (Directory.Exists(ordner)) Directory.Delete(ordner, true);
+        }
+
+        internal void DateienAktualisieren(string quelle, string ziel)
+        {
+            _textBoxText.Append("Ordner aktualisieren: " + ziel + "\n\n");
+            DirectoryCopy(quelle, ziel, true);
+        }
+
+
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
             // Get the subdirectories for the specified directory.
-            var dir = new DirectoryInfo(sourceDirName);
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
 
             if (!dir.Exists)
             {
@@ -54,7 +73,7 @@ namespace SpsProjekteAktualisieren.Model
                     + sourceDirName);
             }
 
-            var dirs = dir.GetDirectories();
+            DirectoryInfo[] dirs = dir.GetDirectories();
             // If the destination directory doesn't exist, create it.
             if (!Directory.Exists(destDirName))
             {
@@ -62,22 +81,23 @@ namespace SpsProjekteAktualisieren.Model
             }
 
             // Get the files in the directory and copy them to the new location.
-            var files = dir.GetFiles();
-            foreach (var file in files)
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
             {
-                var temppath = Path.Combine(destDirName, file.Name);
+                string temppath = Path.Combine(destDirName, file.Name);
                 file.CopyTo(temppath, true);
             }
 
             // If copying subdirectories, copy them and their contents to new location.
-
-            foreach (var subdir in dirs)
+            if (copySubDirs)
             {
-                var temppath = Path.Combine(destDirName, subdir.Name);
-                DirectoryCopy(subdir.FullName, temppath);
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                }
             }
         }
-
         internal StringBuilder TextBoxText() => _textBoxText;
     }
 }

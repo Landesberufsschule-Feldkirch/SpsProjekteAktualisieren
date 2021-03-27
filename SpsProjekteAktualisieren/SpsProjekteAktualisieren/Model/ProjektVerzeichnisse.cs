@@ -4,7 +4,7 @@ namespace SpsProjekteAktualisieren.Model
 {
     public class ProjektVerzeichnisse
     {
-        public ObservableCollection<Ordner> AlleProjektVerzeichnisse { get; set; } = new();
+        public ObservableCollection<Ordner> AlleProjektVerzeichnisse { get; set; } = new ObservableCollection<Ordner>();
     }
 
     public class Ordner
