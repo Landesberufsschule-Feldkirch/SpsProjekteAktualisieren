@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Windows;
 
 namespace SpsProjekteAktualisieren.Model
 {
@@ -11,11 +12,8 @@ namespace SpsProjekteAktualisieren.Model
         public string QuellOrdner { get; set; }
         public string ZielOrdner { get; set; }
 
-
         private readonly StringBuilder _textBoxText;
-        private System.Collections.Generic.IEnumerable<string> _fileNames;
-
-        const int BYTES_TO_READ = sizeof(Int64);
+        private const int BytesToRead = sizeof(long);
 
         public ProjekteAktualsieren()
         {
@@ -33,52 +31,59 @@ namespace SpsProjekteAktualisieren.Model
             foreach (var struktur in OrdnerStruktur.AlleProjektVerzeichnisse)
             {
                 if (struktur.Kommentar == "Ordner") continue;
-                var Quelle = QuellOrdner + "/" + struktur.Quelle;
-                var Ziel = ZielOrdner + "/" + struktur.Ziel;
+                var quelle = QuellOrdner + "/" + struktur.Quelle;
+                var ziel = ZielOrdner + "/" + struktur.Ziel;
+
+                if (!File.Exists(quelle))
+                {
+                    MessageBox.Show("Datei nicht gefunden:" + quelle);
+                    break;
+                }
+
+                if (!File.Exists(ziel))
+                {
+                    MessageBox.Show("Datei nicht gefunden:" + ziel);
+                    break;
+                }
+
 
                 foreach (var datei in AlleDateiListen.AlleDateien)
                 {
-                    if (!FilesAreEqual(new FileInfo(Quelle + "/" + datei.Dateiname), new FileInfo(datei.Dateiname)))
+                    if (!FilesAreEqual(new FileInfo(quelle + "/" + datei.Dateiname), new FileInfo(datei.Dateiname)))
                     {
                         _textBoxText.Clear();
                         _textBoxText.Append("IP Adressen sind unterschiedlich eingestellt! \n");
                     }
-                    _textBoxText.Append(Quelle + "\n");
-                    _textBoxText.Append(Ziel + "\n\n");
+                    _textBoxText.Append(quelle).Append('\n');
+                    _textBoxText.Append(ziel).Append("\n\n");
                 }
             }
         }
-
         internal void AlleAktualisieren()
         {
             _textBoxText.Clear();
             foreach (var struktur in OrdnerStruktur.AlleProjektVerzeichnisse)
             {
-                if (struktur.Kommentar != "Ordner")
-                {
-                    OrdnerLoeschen(ZielOrdner + "/" + struktur.Ziel);
-                    DateienAktualisieren(QuellOrdner + "/" + struktur.Quelle, ZielOrdner + "/" + struktur.Ziel);
-                }
+                if (struktur.Kommentar == "Ordner") continue;
+
+                OrdnerLoeschen(ZielOrdner + "/" + struktur.Ziel);
+                DateienAktualisieren(QuellOrdner + "/" + struktur.Quelle, ZielOrdner + "/" + struktur.Ziel);
             }
         }
-
         private void OrdnerLoeschen(string ordner)
         {
             _textBoxText.Append("Ordner löschen: " + ordner + "\n");
             if (Directory.Exists(ordner)) Directory.Delete(ordner, true);
         }
-
         internal void DateienAktualisieren(string quelle, string ziel)
         {
             _textBoxText.Append("Ordner aktualisieren: " + ziel + "\n\n");
             DirectoryCopy(quelle, ziel, true);
         }
-
-
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
             // Get the subdirectories for the specified directory.
-            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+            var dir = new DirectoryInfo(sourceDirName);
 
             if (!dir.Exists)
             {
@@ -87,7 +92,7 @@ namespace SpsProjekteAktualisieren.Model
                     + sourceDirName);
             }
 
-            DirectoryInfo[] dirs = dir.GetDirectories();
+            var dirs = dir.GetDirectories();
             // If the destination directory doesn't exist, create it.
             if (!Directory.Exists(destDirName))
             {
@@ -95,28 +100,25 @@ namespace SpsProjekteAktualisieren.Model
             }
 
             // Get the files in the directory and copy them to the new location.
-            FileInfo[] files = dir.GetFiles();
-            foreach (FileInfo file in files)
+            var files = dir.GetFiles();
+            foreach (var file in files)
             {
-                string temppath = Path.Combine(destDirName, file.Name);
+                var temppath = Path.Combine(destDirName, file.Name);
                 file.CopyTo(temppath, true);
             }
 
             // If copying subdirectories, copy them and their contents to new location.
-            if (copySubDirs)
+            if (!copySubDirs) return;
+
+            foreach (var subdir in dirs)
             {
-                foreach (DirectoryInfo subdir in dirs)
-                {
-                    string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
-                }
+                var temppath = Path.Combine(destDirName, subdir.Name);
+                DirectoryCopy(subdir.FullName, temppath, copySubDirs);
             }
+
         }
         internal StringBuilder TextBoxText() => _textBoxText;
-
-
-
-        static public bool FilesAreEqual(FileInfo first, FileInfo second)
+        public static bool FilesAreEqual(FileInfo first, FileInfo second)
         {
             if (first.Length != second.Length)
                 return false;
@@ -124,21 +126,19 @@ namespace SpsProjekteAktualisieren.Model
             if (string.Equals(first.FullName, second.FullName, StringComparison.OrdinalIgnoreCase))
                 return true;
 
-            int iterations = (int)Math.Ceiling((double)first.Length / BYTES_TO_READ);
+            var iterations = (int)Math.Ceiling((double)first.Length / BytesToRead);
 
-            using (FileStream fs1 = first.OpenRead())
-            using (FileStream fs2 = second.OpenRead())
+            using var fs1 = first.OpenRead();
+            using var fs2 = second.OpenRead();
+            var one = new byte[BytesToRead];
+            var two = new byte[BytesToRead];
+
+            for (var i = 0; i < iterations; i++)
             {
-                byte[] one = new byte[BYTES_TO_READ];
-                byte[] two = new byte[BYTES_TO_READ];
+                fs1.Read(one, 0, BytesToRead);
+                fs2.Read(two, 0, BytesToRead);
 
-                for (int i = 0; i < iterations; i++)
-                {
-                    fs1.Read(one, 0, BYTES_TO_READ);
-                    fs2.Read(two, 0, BYTES_TO_READ);
-
-                    if (BitConverter.ToInt64(one, 0) != BitConverter.ToInt64(two, 0)) return false;
-                }
+                if (BitConverter.ToInt64(one, 0) != BitConverter.ToInt64(two, 0)) return false;
             }
 
             return true;

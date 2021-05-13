@@ -6,7 +6,6 @@
     public class VisuAnzeigen : INotifyPropertyChanged
     {
         private readonly Model.ProjekteAktualsieren _projekteAktualsieren;
-
         public VisuAnzeigen(Model.ProjekteAktualsieren pA)
         {
             _projekteAktualsieren = pA;
@@ -14,7 +13,6 @@
 
             System.Threading.Tasks.Task.Run(VisuAnzeigenTask);
         }
-
         private void VisuAnzeigenTask()
         {
             while (true)
@@ -25,8 +23,6 @@
             }
             // ReSharper disable once FunctionNeverReturns
         }
-
-        #region TextBoxText
         private object _textBoxText;
         public object TextBoxText
         {
@@ -37,18 +33,10 @@
                 OnPropertyChanged("TextBoxText");
             }
         }
-        #endregion
-
-
-        #region iNotifyPeropertyChanged Members
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        #endregion iNotifyPeropertyChanged Members
     }
 }
