@@ -71,11 +71,6 @@
       "Ziel": "TEST_FUP_LAP__2019__Foerderanlage/LAP_2019_Foerderanlage/net5.0-windows"
     },
     {
-      "Kommentar": "Nadeltelegraph",
-      "Quelle": "Nadeltelegraph/bin/Debug/net5.0-windows",
-      "Ziel": "Snap7_FUP_Nadeltelegraph/Nadeltelegraph/net5.0-windows"
-    },
-    {
       "Kommentar": "Synchronisiereinrichtung",
       "Quelle": "Synchronisiereinrichtung/bin/Debug/net5.0-windows",
       "Ziel": "Snap7_FUP_Synchronisiereinrichtung/Synchronisiereinrichtung/net5.0-windows"
@@ -94,11 +89,36 @@
       "Kommentar": "Labor Getriebemotor",
       "Quelle": "LaborGetriebemotor/bin/Debug/net5.0-windows",
       "Ziel": "TEST_SCL_Labor_Getriebemotor/Getriebemotor/net5.0-windows"
-    }    ,	
+    },	
     {
       "Kommentar": "Labor Linearachse",
       "Quelle": "LaborLinearachse/bin/Debug/net5.0-windows",
       "Ziel": "TEST_SCL_Labor_Linearachse/Linearachse/net5.0-windows"
-    }
+    },
+    {
+      "Kommentar": "Nadeltelegraph",
+      "Quelle": "Nadeltelegraph/bin/Debug/net5.0-windows",
+      "Ziel": "TEST_FUP_Nadeltelegraph/Nadeltelegraph/net5.0-windows"
+    },
+    {
+      "Kommentar": "Schleifmaschine",
+      "Quelle": "Schleifmaschine/bin/Debug/net5.0-windows",
+      "Ziel": "TEST_SCL_Schleifmaschine/Schleifmaschine/net5.0-windows"
+    },
+	 {
+      "Kommentar": "Blinklicht Fibonacci",
+      "Quelle": "Blinklicht_Fibonacci/bin/Debug/net5.0-windows",
+      "Ziel": "TEST_SCL_Blinklicht_Fibonacci/Blinklicht_Fibonacci/net5.0-windows"
+    },
+	 {
+      "Kommentar": "Parkhaus",
+      "Quelle": "Parkhaus/bin/Debug/net5.0-windows",
+      "Ziel": "TEST_SCL_Parkhaus/Parkhaus/net5.0-windows"
+    },
+	 {
+      "Kommentar": "WordClock",
+      "Quelle": "WordClock/bin/Debug/net5.0-windows",
+      "Ziel": "TEST_SCL_WordClock/WordClock/net5.0-windows"
+    }			
   ]
 }
