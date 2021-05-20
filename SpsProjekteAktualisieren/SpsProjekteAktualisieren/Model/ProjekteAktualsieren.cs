@@ -34,15 +34,15 @@ namespace SpsProjekteAktualisieren.Model
                 var quelle = QuellOrdner + "/" + struktur.Quelle;
                 var ziel = ZielOrdner + "/" + struktur.Ziel;
 
-                if (!File.Exists(quelle))
+                if (!Directory.Exists(quelle))
                 {
-                    MessageBox.Show("Datei nicht gefunden:" + quelle);
+                    MessageBox.Show("Ordner nicht gefunden:" + quelle);
                     break;
                 }
 
-                if (!File.Exists(ziel))
+                if (!Directory.Exists(ziel))
                 {
-                    MessageBox.Show("Datei nicht gefunden:" + ziel);
+                    MessageBox.Show("Ordner nicht gefunden:" + ziel);
                     break;
                 }
 
@@ -78,9 +78,9 @@ namespace SpsProjekteAktualisieren.Model
         internal void DateienAktualisieren(string quelle, string ziel)
         {
             _textBoxText.Append("Ordner aktualisieren: " + ziel + "\n\n");
-            DirectoryCopy(quelle, ziel, true);
+            DirectoryCopy(quelle, ziel);
         }
-        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        private static void DirectoryCopy(string sourceDirName, string destDirName)
         {
             // Get the subdirectories for the specified directory.
             var dir = new DirectoryInfo(sourceDirName);
@@ -107,13 +107,10 @@ namespace SpsProjekteAktualisieren.Model
                 file.CopyTo(temppath, true);
             }
 
-            // If copying subdirectories, copy them and their contents to new location.
-            if (!copySubDirs) return;
-
             foreach (var subdir in dirs)
             {
                 var temppath = Path.Combine(destDirName, subdir.Name);
-                DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                DirectoryCopy(subdir.FullName, temppath);
             }
 
         }
