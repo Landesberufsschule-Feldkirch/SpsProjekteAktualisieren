@@ -1,12 +1,16 @@
-﻿namespace SpsProjekteAktualisieren.ViewModel
+﻿using System.Windows.Media;
+using SpsProjekteAktualisieren.Model;
+
+namespace SpsProjekteAktualisieren.ViewModel
 {
     using System.ComponentModel;
     using System.Threading;
 
     public class VisuAnzeigen : INotifyPropertyChanged
     {
-        private readonly Model.ProjekteAktualsieren _projekteAktualsieren;
-        public VisuAnzeigen(Model.ProjekteAktualsieren pA)
+        private readonly ProjekteAktualsieren _projekteAktualsieren;
+
+        public VisuAnzeigen(ProjekteAktualsieren pA)
         {
             _projekteAktualsieren = pA;
             TextBoxText = "";
@@ -18,6 +22,7 @@
             while (true)
             {
                 TextBoxText = _projekteAktualsieren.TextBoxText();
+                HintergrundFarbe = _projekteAktualsieren.HintergrundFarbe();
 
                 Thread.Sleep(10);
             }
@@ -33,6 +38,18 @@
                 OnPropertyChanged("TextBoxText");
             }
         }
+
+        private Brush _hintergrundFarbe;
+        public Brush HintergrundFarbe
+        {
+            get => _hintergrundFarbe;
+            set
+            {
+                _hintergrundFarbe = value;
+                OnPropertyChanged("HintergrundFarbe");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {

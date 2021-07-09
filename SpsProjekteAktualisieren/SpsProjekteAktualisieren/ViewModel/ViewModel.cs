@@ -7,6 +7,7 @@
     { 
         public Model.ProjekteAktualsieren ProjekteAktualsieren { get; }
         public VisuAnzeigen ViAnzeige { get; set; }
+
         public ViewModel()
         {
             ProjekteAktualsieren = new Model.ProjekteAktualsieren();

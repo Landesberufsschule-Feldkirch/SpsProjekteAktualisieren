@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Windows;
+using System.Windows.Media;
 
 namespace SpsProjekteAktualisieren.Model
 {
@@ -14,6 +14,9 @@ namespace SpsProjekteAktualisieren.Model
 
         private readonly StringBuilder _textBoxText;
         private const int BytesToRead = sizeof(long);
+
+        private readonly bool _ordnerErzeugt;
+        private readonly bool _fehlerAufgetreten;
 
         public ProjekteAktualsieren()
         {
@@ -36,12 +39,14 @@ namespace SpsProjekteAktualisieren.Model
 
                 if (!Directory.Exists(quelle))
                 {
-                    MessageBox.Show("Quelle: Datei nicht gefunden:" + quelle);
-                    break;
+                    _fehlerAufgetreten = true;
+                    _textBoxText.Append("Quelle: Datei nicht gefunden:" + quelle).Append("\n\n");
+                   break;
                 }
 
                 if (!Directory.Exists(ziel))
                 {
+                    _ordnerErzeugt = true;
                     Directory.CreateDirectory(ziel);
                     _textBoxText.Append("Ordner erzeugt: " + ziel).Append("\n\n");
                     break;
@@ -60,6 +65,13 @@ namespace SpsProjekteAktualisieren.Model
                 }
             }
         }
+
+        internal Brush HintergrundFarbe()
+        {
+            if (_fehlerAufgetreten) return Brushes.Red;
+            return _ordnerErzeugt ? Brushes.Orange : Brushes.White;
+        }
+
         internal void AlleAktualisieren()
         {
             _textBoxText.Clear();
@@ -79,9 +91,9 @@ namespace SpsProjekteAktualisieren.Model
         internal void DateienAktualisieren(string quelle, string ziel)
         {
             _textBoxText.Append("Ordner aktualisieren: " + ziel + "\n\n");
-            DirectoryCopy(quelle, ziel, true);
+            DirectoryCopy(quelle, ziel);
         }
-        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        private static void DirectoryCopy(string sourceDirName, string destDirName)
         {
             // Get the subdirectories for the specified directory.
             var dir = new DirectoryInfo(sourceDirName);
@@ -108,13 +120,10 @@ namespace SpsProjekteAktualisieren.Model
                 file.CopyTo(temppath, true);
             }
 
-            // If copying subdirectories, copy them and their contents to new location.
-            if (!copySubDirs) return;
-
             foreach (var subdir in dirs)
             {
                 var temppath = Path.Combine(destDirName, subdir.Name);
-                DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                DirectoryCopy(subdir.FullName, temppath);
             }
 
         }
